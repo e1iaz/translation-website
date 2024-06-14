@@ -2,13 +2,17 @@ let languages = {
     'English': ['Chinese'],
     'Chinese': ['English']
 }
+
 const AUTONYMS = {
     en: 'English',
     fr: 'français',
 }
+
+const base_url = "http://127.0.0.1:5000";
+
 function doTranslate() {
     document.getElementById('progress').style.display = "block";
-    fetch('/api/translate', {
+    fetch(base_url + '/api/translate', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
