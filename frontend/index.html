@@ -10,33 +10,45 @@
 </head>
 
 <body onload="fetchLanguages();">
-<header>
-    <h1>Translator By GPT Workflow</h1>
-</header>
+    <header>
+        <h1>Translator By GPT Workflow</h1>
+    </header>
 
-<main class="container">
-    <progress id="progress"></progress>
-    <div class="source-container">
-        <select id="from" onchange="selectLanguage()">
-        </select>
-        <textarea id="source_content"></textarea>
-    </div>
-    <div class="actions">
-        <button onclick="doTranslate()">>></button>
-    </div>
-    <div class="target-container">
-        <select id="to" onchange="selectLanguage()">
-        </select>
-        <textarea id="target_content" readonly></textarea>
-    </div>
-</main>
-<footer>
-    <p>
-        This projection is base on <a href="https://github.com/andrewyng/translation-agent">translation-agent</a> and <a
-            href="https://github.com/Helsinki-NLP/Opus-MT/tree/master/static">Opus-MT</a>
-    </p>
-</footer>
-</footer>
+    <main class="container">
+        <progress id="progress"></progress>
+        <div class="source-container">
+            <div class="select-container">
+                <label for="from"> Source Language </label>
+                <select id="from" onchange="selectLanguage()"></select>
+            </div>
+            <div class="select-container">
+                <label for="code"> Access Code </label>
+                <input class="select" id="coder" type="password"></input>
+            </div>
+            <textarea id="source_content"></textarea>
+        </div>
+        <div class="actions">
+            <button onclick="doTranslate()">>></button>
+        </div>
+        <div class="target-container">
+            <div class="select-container">
+                <label for="to"> Target Language </label>
+                <select id="to" onchange="selectLanguage()"></select>
+            </div>
+            <div class="select-container">
+                <label for="country"> Country</label>
+                <select id="country" onchange="selectLanguage()"></select>
+            </div>
+            <textarea id="target_content" readonly></textarea>
+        </div>
+    </main>
+    <footer>
+        <p>
+            This projection is base on <a href="https://github.com/andrewyng/translation-agent">translation-agent</a>
+            and <a href="https://github.com/Helsinki-NLP/Opus-MT/tree/master/static">Opus-MT</a>
+        </p>
+    </footer>
+    </footer>
 </body>
 
 </html>

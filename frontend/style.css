@@ -55,9 +55,30 @@ h1 {
   resize: none;
 }
 
-select,
+.select-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+label {
+  width: 60px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.select,
+select {
+  padding: 9px;
+  width: 30vw;
+  flex: 1;
+  margin-right: 30px;
+}
+
 button {
-  padding: 10px;
+  padding: 8px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 progress {
@@ -65,3 +86,12 @@ progress {
   width: 100%;
   display: none;
 }
+
+textarea {
+  width: 45vw;
+  min-width: 320px;
+  height: 50vh;
+  padding: 1em;
+  display: block;
+}
+
