@@ -1,11 +1,16 @@
 let languages = {
     'English': ['Chinese'],
-    'Chinese': ['English']
+    'Chinese': ['English'],
 }
 
 const AUTONYMS = {
     en: 'English',
     fr: 'français',
+}
+
+let COUNTRIES = {
+    'English': ['United States', 'United Kingdom'],
+    'Chinese': ['China'],
 }
 
 const base_url = "http://127.0.0.1:5000";
@@ -23,7 +28,9 @@ function doTranslate() {
         body: JSON.stringify({
             from: document.getElementById('from').value,
             to: document.getElementById('to').value,
-            source: document.getElementById('source_content').value
+            source: document.getElementById('source_content').value,
+            country: document.getElementById('country').value,
+            accessCode: document.getElementById('accessCode').value,
         })
     }).then(response => response.json())
         .then(result => {
@@ -35,11 +42,10 @@ function doTranslate() {
 function fetchLanguages() {
     const select = document.getElementById('from');
     const accessCode = localStorage.getItem("accessCode");
-    if (accessCode != null) {
-        let passwd = document.getElementById('accessCode');
-        passwd.value = accessCode;
-    }
     var codeInputElem = document.getElementById('accessCode');
+    if (accessCode != null) {
+        codeInputElem.value = accessCode;
+    }
     codeInputElem.addEventListener('input', function(event) {
         var inputValue = event.target.value;
         localStorage.setItem("accessCode", inputValue);
@@ -67,5 +73,26 @@ function selectLanguage() {
         opt.value = targetLangs[i];
         opt.innerHTML = AUTONYMS[targetLangs[i]] || targetLangs[i];
         select.appendChild(opt);
+        if (i === 0) {
+            selectCountry(targetLangs[i])
+        }
     }
+}
+
+function selectCountry() {
+    const targetLang = document.getElementById('to').value;
+    const select = document.getElementById('country')
+    select.innerHTML = '';
+    const countries = COUNTRIES[targetLang];
+
+    for (let i = 0; i < countries.length; ++i) {
+        let opt = document.createElement('option');
+        opt.value = countries[i];
+        opt.innerHTML = countries[i];
+        select.appendChild(opt);
+    }
+    let opt = document.createElement('option');
+    opt.value = "NO_COUNTRY";
+    opt.innerHTML = "NO_COUNTRY";
+    select.appendChild(opt);
 }
