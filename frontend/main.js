@@ -33,11 +33,21 @@ function doTranslate() {
             country: document.getElementById('country').value,
             accessCode: document.getElementById('accessCode').value,
         })
-    }).then(response => response.json())
-        .then(result => {
-            document.getElementById('target_content').value = result.translation
-            document.getElementById('progress').style.display = "none";
-        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Network response was not ok: " + response.statusText);
+        }
+        return response.json();
+    })
+    .then(result => {
+        document.getElementById('target_content').value = result.translation
+        document.getElementById('progress').style.display = "none";
+    })
+    .catch(error=>{
+        document.getElementById('progress').style.display = "none";
+        alert("Translation failed. Please try again.");
+    })
 }
 
 function fetchLanguages() {
