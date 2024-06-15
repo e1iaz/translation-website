@@ -1,6 +1,6 @@
 let languages = {
-    'English': ['Chinese'],
-    'Chinese': ['English'],
+    'English': ['Chinese', 'French'],
+    'Chinese': ['English', 'French'],
 }
 
 const AUTONYMS = {
@@ -11,6 +11,7 @@ const AUTONYMS = {
 let COUNTRIES = {
     'English': ['United States', 'United Kingdom'],
     'Chinese': ['China'],
+    'French': ['France'],
 }
 
 const base_url = "http://127.0.0.1:5000";
@@ -85,11 +86,13 @@ function selectCountry() {
     select.innerHTML = '';
     const countries = COUNTRIES[targetLang];
 
-    for (let i = 0; i < countries.length; ++i) {
-        let opt = document.createElement('option');
-        opt.value = countries[i];
-        opt.innerHTML = countries[i];
-        select.appendChild(opt);
+    if (countries != null) {
+        for (let i = 0; i < countries.length; ++i) {
+            let opt = document.createElement('option');
+            opt.value = countries[i];
+            opt.innerHTML = countries[i];
+            select.appendChild(opt);
+        }
     }
     let opt = document.createElement('option');
     opt.value = "NO_COUNTRY";
