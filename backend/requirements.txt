@@ -1,0 +1,7 @@
+flask
+flask-cors
+openai
+tiktoken
+python-dotenv
+icecream
+langchain-text-splitters
